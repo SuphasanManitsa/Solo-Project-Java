@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainSceneController">
+   <children>
+      <ComboBox fx:id="ComboBox2" editable="true" layoutX="133.0" layoutY="580.0" prefWidth="150.0" promptText="Name" />
+      <ComboBox fx:id="ComboBox3" editable="true" layoutX="410.0" layoutY="580.0" prefWidth="150.0" promptText="Sweetness Lv" />
+      <ComboBox fx:id="ComboBox4" editable="true" layoutX="701.0" layoutY="580.0" prefWidth="150.0" promptText="Amount" />
+      <TableView fx:id="tableView" layoutX="817.0" layoutY="14.0" prefHeight="200.0" prefWidth="450.0">
+        <columns>
+            <TableColumn fx:id="order_no_Column" prefWidth="90.0" text="Order Number" />
+            <TableColumn fx:id="order_name_Column" prefWidth="90.0" text="Order Name" />
+            <TableColumn fx:id="sweetnessLv_Column" prefWidth="90.0" text="Sweetness Lv" />
+            <TableColumn fx:id="amount_Column" prefWidth="90.0" text="Amount" />
+            <TableColumn fx:id="price_Column" prefWidth="90.0" text="Price" />
+        </columns>
+      </TableView>
+      <Button layoutX="891.0" layoutY="580.0" mnemonicParsing="false" onAction="#add_to_teble" text="Add to Teble" />
+      <Button layoutX="1013.0" layoutY="223.0" mnemonicParsing="false" onAction="#removeTebleView" text="Remove" />
+      <Button layoutX="1142.0" layoutY="580.0" mnemonicParsing="false" onAction="#switchToScene2" text="Check Bill" />
+   </children>
+</AnchorPane>
