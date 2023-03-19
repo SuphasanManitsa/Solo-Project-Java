@@ -15,14 +15,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class MainSceneController implements Initializable {
     private static int no = 1;
-    private Stage primaryStage;
+    private static int sum = 0;
 
+    @FXML
+    private TextField TotalShow;
+    
     @FXML
     private Button BottonScene1,BottonScene2;
 
@@ -99,6 +102,10 @@ public class MainSceneController implements Initializable {
                 Customer customer = new Customer(MainSceneController.no + (Integer.parseInt(ComboBox4.getValue()) * 0),
                     ComboBox2.getValue(), ComboBox3.getValue(), ComboBox4.getValue(),
                     Integer.parseInt(ComboBox4.getValue()) * Integer.parseInt(price[p]));
+                MainSceneController.sum += Integer.parseInt(ComboBox4.getValue()) * Integer.parseInt(price[p]);
+                TotalShow.setText(String.valueOf(MainSceneController.sum));
+                // System.out.println(String.valueOf(sum));
+
                 ObservableList<Customer> customers = tableView.getItems();
                 customers.add(customer);
                 tableView.setItems(customers);
@@ -116,6 +123,8 @@ public class MainSceneController implements Initializable {
     @FXML
     void removeTebleView(ActionEvent event) {
         try {
+            MainSceneController.sum -= tableView.getItems().get(tableView.getItems().size() - 1).getPrice();
+            TotalShow.setText(String.valueOf(MainSceneController.sum));
             tableView.getItems().remove(tableView.getItems().get(tableView.getItems().size() - 1));
             MainSceneController.no -= 1;
         } catch (Exception e) {
@@ -129,15 +138,21 @@ public class MainSceneController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ComboBox2.setItems(FXCollections.observableArrayList(smoothie));
-        ComboBox3.setItems(FXCollections.observableArrayList(sweetnessLv));
-        ComboBox4.setItems(FXCollections.observableArrayList(amount));
 
-        order_no_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("OrderNumber"));
-        order_name_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("Name"));
-        sweetnessLv_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("Sweetness"));
-        amount_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("Amount"));
-        price_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("Price"));
+        try {
+            TotalShow.setText("0");
+            ComboBox2.setItems(FXCollections.observableArrayList(smoothie));
+            ComboBox3.setItems(FXCollections.observableArrayList(sweetnessLv));
+            ComboBox4.setItems(FXCollections.observableArrayList(amount));
+
+            order_no_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("OrderNumber"));
+            order_name_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("Name"));
+            sweetnessLv_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("Sweetness"));
+            amount_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("Amount"));
+            price_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("Price"));
+        } catch (Exception e) {
+            System.out.println("switch page");
+        }
 
     }
 }
