@@ -22,6 +22,6 @@
       </TableView>
       <Button layoutX="891.0" layoutY="580.0" mnemonicParsing="false" onAction="#add_to_teble" text="Add to Teble" />
       <Button layoutX="1013.0" layoutY="223.0" mnemonicParsing="false" onAction="#removeTebleView" text="Remove" />
-      <Button layoutX="1142.0" layoutY="580.0" mnemonicParsing="false" onAction="#switchToScene2" text="Check Bill" />
+      <Button fx:id="BottonScene1" layoutX="1142.0" layoutY="580.0" mnemonicParsing="false" onAction="#switchToScene2" text="Check Bill" />
    </children>
 </AnchorPane>

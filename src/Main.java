@@ -6,12 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("lb.fxml"));
+            root = FXMLLoader.load(Main.class.getResource("page1.fxml"));
             Scene scene = new Scene(root);
 
             primaryStage.setTitle("Hello World!");
