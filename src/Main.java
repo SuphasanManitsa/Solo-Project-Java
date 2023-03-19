@@ -14,12 +14,10 @@ public class Main extends Application {
             root = FXMLLoader.load(Main.class.getResource("page1.fxml"));
             Scene scene = new Scene(root);
 
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("Smoothie Shop");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
-            System.out.println("error");
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
