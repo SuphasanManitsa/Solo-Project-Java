@@ -66,10 +66,7 @@ public class MainSceneController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
-
     }
-
-
     @FXML
     void switchToScene4(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -96,7 +93,7 @@ public class MainSceneController implements Initializable {
 
     @FXML
     private TableView<Customer> tableView;
-    
+
     @FXML
     private TableColumn<Customer, String> order_no_Column;
 
@@ -135,6 +132,7 @@ public class MainSceneController implements Initializable {
         for (int i = 0; i < smoothie.length; i++) {
             if (smoothie[i].equals(ComboBox2.getValue())) {
                 p = i;
+                break;
             }
         }
         int c = 1;
