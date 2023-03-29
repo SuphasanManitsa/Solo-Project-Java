@@ -11,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -19,15 +18,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class MainSceneController implements Initializable {
+public class SceneController implements Initializable {
     private static String nowFile = "";
     private static int cp = 0;
     private static TableView<Customer> Teble;
     private static int no = 1;
     private static int sum = 0;
 
-    @FXML
-    private Button BottonScene1, BottonScene2;
 
     @FXML
     void switchToScene1(ActionEvent event) throws IOException {
@@ -40,7 +37,7 @@ public class MainSceneController implements Initializable {
 
     @FXML
     void switchToScene2(ActionEvent event) throws IOException {
-        MainSceneController.Teble = tableView;
+        SceneController.Teble = tableView;
 
         Parent root = FXMLLoader.load(getClass().getResource("page2.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -51,7 +48,7 @@ public class MainSceneController implements Initializable {
 
     @FXML
     void switchToScene3(ActionEvent event) throws IOException {
-        MainSceneController.Teble = tableView;
+        SceneController.Teble = tableView;
 
         if (tableView.getItems().size() == 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -76,10 +73,10 @@ public class MainSceneController implements Initializable {
                 "please wait We're making smoothies for you.");
         alert.showAndWait();
         
-        MainSceneController.sum = 0;
-        MainSceneController.no = 1;
+        SceneController.sum = 0;
+        SceneController.no = 1;
         this.cp = 0;
-        MainSceneController.Teble = null;
+        SceneController.Teble = null;
         Parent root = FXMLLoader.load(getClass().getResource("page4.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -182,21 +179,21 @@ public class MainSceneController implements Initializable {
             } else {
                 try {
                     Customer customer = new Customer(
-                            MainSceneController.no + (Integer.parseInt(ComboBox4.getValue()) * 0),
+                            SceneController.no + (Integer.parseInt(ComboBox4.getValue()) * 0),
                             ComboBox2.getValue(), ComboBox3.getValue(), ComboBox4.getValue(),
                             Integer.parseInt(ComboBox4.getValue()) * Integer.parseInt(price[p]));
-                    MainSceneController.sum += Integer.parseInt(ComboBox4.getValue()) * Integer.parseInt(price[p]);
-                    // TotalShow.setText(String.valueOf(MainSceneController.sum));
+                    SceneController.sum += Integer.parseInt(ComboBox4.getValue()) * Integer.parseInt(price[p]);
+                    // TotalShow.setText(String.valueOf(SceneController.sum));
 
                     ObservableList<Customer> customers = tableView.getItems();
                     customers.add(customer);
                     tableView.setItems(customers);
 
-                    MainSceneController.no += 1;
+                    SceneController.no += 1;
 
-                    MainSceneController.Teble = tableView;
+                    SceneController.Teble = tableView;
                     System.out.println(tableView.getItems());
-                    System.out.println(MainSceneController.Teble.getItems());
+                    System.out.println(SceneController.Teble.getItems());
                 } catch (Exception e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
@@ -212,12 +209,12 @@ public class MainSceneController implements Initializable {
     @FXML
     void removeTebleView(ActionEvent event) {
         try {
-            MainSceneController.sum -= tableView.getItems().get(tableView.getItems().size() - 1).getPrice();
-            // TotalShow.setText(String.valueOf(MainSceneController.sum));
+            SceneController.sum -= tableView.getItems().get(tableView.getItems().size() - 1).getPrice();
+            // TotalShow.setText(String.valueOf(SceneController.sum));
             tableView.getItems().remove(tableView.getItems().get(tableView.getItems().size() - 1));
-            MainSceneController.no -= 1;
+            SceneController.no -= 1;
 
-            MainSceneController.Teble = tableView;
+            SceneController.Teble = tableView;
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -230,18 +227,18 @@ public class MainSceneController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            MainSceneController.nowFile = location.getFile().split("/")[location.getFile().split("/").length - 1];
-            if (MainSceneController.nowFile.equals("page1.fxml")) {
+            SceneController.nowFile = location.getFile().split("/")[location.getFile().split("/").length - 1];
+            if (SceneController.nowFile.equals("page1.fxml")) {
                 this.cp += 1;
                 System.out.println("now page 1");
                 if(this.cp == 1){
-                    MainSceneController.Teble = tableView;
+                    SceneController.Teble = tableView;
                 }
                 else{
-                    tableView.setItems(MainSceneController.Teble.getItems());
+                    tableView.setItems(SceneController.Teble.getItems());
                 }
 
-                System.out.println(MainSceneController.Teble);
+                System.out.println(SceneController.Teble);
                 System.out.println(tableView);
                 
 
@@ -254,15 +251,15 @@ public class MainSceneController implements Initializable {
                 sweetnessLv_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("Sweetness"));
                 amount_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("Amount"));
                 price_Column.setCellValueFactory(new PropertyValueFactory<Customer, String>("Price"));
-            } else if (MainSceneController.nowFile.equals("page2.fxml")) {
+            } else if (SceneController.nowFile.equals("page2.fxml")) {
                 System.out.println("now page 2");
 
-            } else if (MainSceneController.nowFile.equals("page3.fxml")) {
+            } else if (SceneController.nowFile.equals("page3.fxml")) {
                 System.out.println("now page 3");
 
-                TotalShow.setText(String.valueOf(MainSceneController.sum));
+                TotalShow.setText(String.valueOf(SceneController.sum));
 
-            } else if (MainSceneController.nowFile.equals("page4.fxml")) {
+            } else if (SceneController.nowFile.equals("page4.fxml")) {
                 System.out.println("now page 4");
 
             }
