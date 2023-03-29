@@ -75,7 +75,7 @@ public class SceneController implements Initializable {
         
         SceneController.sum = 0;
         SceneController.no = 1;
-        this.cp = 0;
+        SceneController.cp = 0;
         SceneController.Teble = null;
         Parent root = FXMLLoader.load(getClass().getResource("page4.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -229,9 +229,9 @@ public class SceneController implements Initializable {
         try {
             SceneController.nowFile = location.getFile().split("/")[location.getFile().split("/").length - 1];
             if (SceneController.nowFile.equals("page1.fxml")) {
-                this.cp += 1;
+                SceneController.cp += 1;
                 System.out.println("now page 1");
-                if(this.cp == 1){
+                if(SceneController.cp == 1){
                     SceneController.Teble = tableView;
                 }
                 else{
