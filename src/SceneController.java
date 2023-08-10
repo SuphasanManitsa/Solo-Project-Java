@@ -223,7 +223,7 @@ public class SceneController implements Initializable {
             alert.showAndWait();
         }
     }
-
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {

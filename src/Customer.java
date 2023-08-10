@@ -83,5 +83,4 @@ public class Customer {
     public void setPrice(int Price) {
         this.Price = Price;
     }
-
 }
